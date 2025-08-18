@@ -12,9 +12,8 @@ plotly>=5.15.0
 # File processing
 pdfplumber>=0.7.0
 python-docx>=0.8.11
-PyMuPDF>=1.23.0
 
-# PDF generation
+# PDF generation (optional)
 reportlab>=4.0.0
 
 # API requests
