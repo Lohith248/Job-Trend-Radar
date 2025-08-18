@@ -1,42 +1,59 @@
-## Career Trend Radar (Job + Skill Assistant)
+# 🎯 Career Trend Radar
 
-### Overview
-Streamlit app that extracts skills from resumes and job descriptions, clusters trends, computes a user–role skill match, and exports a short report (PDF/CSV).
+**AI-powered job market analysis and skill matching tool**
 
-### Quick start
-1) Install dependencies (Python 3.10+):
-```
+## What it does
+- Extracts skills from your resume using AI
+- Fetches real job postings for your target role
+- Analyzes skill gaps and provides match percentages
+- Generates career recommendations and learning paths
+- Exports detailed reports (PDF/CSV)
+
+## Quick Setup
+
+### 1. Install Dependencies
+```bash
 pip install -r requirements.txt
 ```
 
-2) Create a `.env` file in the project root:
+### 2. Configure API Keys
+Create `.env` file:
 ```
 GOOGLE_API_KEY=your_gemini_api_key
-# Optional (for live job search via JSearch)
 JSEARCH_API_KEY=your_jsearch_api_key
 ```
 
-3) Run the app:
+### 3. Run the App
+```bash
+streamlit run app_clean.py
 ```
-streamlit run streamlit_app.py
+
+## How to Use
+1. **Upload Resume** - PDF, DOCX, or TXT files
+2. **Enter Target Role** - e.g., "Data Scientist", "Software Engineer"
+3. **Click Analyze** - AI will process and match your skills
+4. **View Results** - See gaps, recommendations, and download reports
+
+## Features
+- 🤖 **AI Skill Extraction** - Intelligent resume parsing
+- 🎯 **Smart Matching** - Semantic skill comparison
+- 📊 **Market Analysis** - Real job market trends
+- 📝 **Career Guidance** - Personalized recommendations
+- 📄 **Export Reports** - PDF and CSV downloads
+
+## Requirements
+- Python 3.10+
+- Google Gemini API key (required)
+- JSearch API key (optional, for live job data)
+
+## Project Structure
 ```
-
-### How to use
-- Upload a resume (pdf/docx/txt). Optionally add manual skills or paste a single JD for a quick match.
-- To analyze live job posts, toggle “Use live JSearch API” and set role/location, then click “Analyze”.
-- View top skills, clusters, gap analysis, role recommendations, and download the PDF/CSV.
-
-### Environment variables
-- `GOOGLE_API_KEY` (required): Gemini API key used for skill extraction and summaries. Put it in `.env` or export it in your shell.
-- `JSEARCH_API_KEY` (optional): Enables live job search via JSearch. Without it, paste job descriptions manually.
-
-### Notes
-- First run may download a small embedding model (for better matching); this can take a minute.
-- If you see very few skills, ensure `GOOGLE_API_KEY` is set and valid. You can also add a few manual skills to boost recall.
-
-### Troubleshooting
-- “GOOGLE_API_KEY not found”: Create `.env` with the key and restart the app.
-- Few or zero skills: Ensure resume is text-based (not scanned). Try DOCX/TXT. Verify internet access and install extras: `pip install sentence-transformers keybert`.
-- Slow first run: Models are cached after first use. Keep the app running to avoid reloads.
-
-
+├── app_clean.py                    # Main Streamlit application
+├── skill_pipeline_simple.py        # Resume processing & skill extraction
+├── jobs_api.py                     # Job posting API integration
+├── utils/
+│   ├── llm_utils_simple.py        # LLM operations
+│   ├── smart_skill_matcher.py     # Intelligent skill matching
+│   └── llm_skill_normalizer.py    # Dynamic skill normalization
+└── requirements.txt                # Python dependencies
+```
